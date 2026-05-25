@@ -79,11 +79,11 @@ transition: background 0.2s !important;
 .hero {
 min-height: 100vh;
 display: flex;
-flex-direction: column;
-justify-content: center;
+align-items: center;
 padding: 120px 48px 80px;
 position: relative;
-overflow: hidden;
+overflow: visible;
+gap: 0;
 }
 
 .hero::before {
@@ -93,6 +93,13 @@ top: -200px; right: -200px;
 width: 700px; height: 700px;
 background: radial-gradient(circle, rgba(184,240,110,0.08) 0%, transparent 70%);
 pointer-events: none;
+}
+
+/* ── HERO CONTENT (LEFT) ── */
+.hero-content {
+flex: 0 0 auto;
+width: 38%;
+z-index: 2;
 }
 
 .hero-tag {
@@ -117,11 +124,10 @@ background: var(--green);
 
 h1 {
 font-family: 'Syne', sans-serif;
-font-size: clamp(3rem, 8vw, 7rem);
+font-size: clamp(2.8rem, 5.5vw, 6rem);
 font-weight: 800;
 line-height: 0.95;
 letter-spacing: -0.03em;
-max-width: 900px;
 opacity: 0;
 animation: fadeUp 0.7s ease forwards 0.2s;
 }
@@ -134,9 +140,9 @@ color: transparent;
 }
 
 .hero-sub {
-margin-top: 36px;
-max-width: 480px;
-font-size: 0.95rem;
+margin-top: 28px;
+max-width: 420px;
+font-size: 0.88rem;
 line-height: 1.7;
 color: var(--light-gray);
 opacity: 0;
@@ -144,7 +150,7 @@ animation: fadeUp 0.7s ease forwards 0.35s;
 }
 
 .hero-actions {
-margin-top: 48px;
+margin-top: 36px;
 display: flex;
 align-items: center;
 gap: 24px;
@@ -178,20 +184,158 @@ color: var(--gray);
 letter-spacing: 0.04em;
 }
 
-/* floating receipt mockup */
+/* ── HERO CALCULATOR (CENTER) ── */
+.hero-calc {
+flex: 0 0 auto;
+width: 320px;
+margin: 0 32px 0 96px;
+background: var(--card-bg);
+border: 1px solid rgba(255,255,255,0.1);
+border-radius: 4px;
+padding: 28px 26px;
+z-index: 3;
+opacity: 0;
+animation: fadeUp 0.8s ease forwards 0.6s;
+}
+
+.calc-header {
+font-family: 'Syne', sans-serif;
+font-size: 0.75rem;
+font-weight: 700;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(--light-gray);
+margin-bottom: 22px;
+padding-bottom: 12px;
+border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.calc-label {
+display: block;
+font-size: 0.6rem;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+color: var(--gray);
+margin-bottom: 6px;
+}
+
+.calc-val-main {
+font-family: 'Syne', sans-serif;
+font-size: 1.6rem;
+font-weight: 800;
+color: var(--green);
+line-height: 1;
+}
+
+input[type=range] {
+-webkit-appearance: none;
+width: 100%;
+background: transparent;
+margin: 12px 0 20px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+height: 2px;
+background: rgba(255,255,255,0.1);
+border-radius: 2px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+-webkit-appearance: none;
+height: 16px;
+width: 16px;
+background: var(--green);
+border-radius: 2px;
+margin-top: -7px;
+cursor: pointer;
+transition: background 0.2s;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+background: var(--green-dark);
+}
+
+select {
+width: 100%;
+padding: 10px 12px;
+background: #1a1a1a;
+border: 1px solid rgba(255,255,255,0.1);
+color: var(--white);
+font-family: 'DM Mono', monospace;
+font-size: 0.72rem;
+border-radius: 2px;
+outline: none;
+cursor: pointer;
+margin-bottom: 20px;
+}
+
+select:focus { border-color: rgba(184,240,110,0.3); }
+
+.calc-output-box {
+background: rgba(184,240,110,0.05);
+border: 1px solid rgba(184,240,110,0.15);
+border-radius: 2px;
+padding: 18px;
+text-align: center;
+}
+
+.calc-output-label {
+font-size: 0.55rem;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+color: var(--gray);
+margin-bottom: 6px;
+}
+
+.calc-total {
+font-family: 'Syne', sans-serif;
+font-size: 2.4rem;
+font-weight: 800;
+color: var(--green);
+line-height: 1;
+margin-bottom: 4px;
+}
+
+.calc-sublabel {
+font-size: 0.6rem;
+color: var(--light-gray);
+margin-bottom: 14px;
+}
+
+.btn-ghost {
+background: transparent;
+color: var(--light-gray);
+border: 1px solid rgba(255,255,255,0.1);
+padding: 10px 14px;
+width: 100%;
+font-family: 'DM Mono', monospace;
+font-size: 0.68rem;
+letter-spacing: 0.04em;
+cursor: pointer;
+border-radius: 2px;
+transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-ghost:hover {
+border-color: rgba(184,240,110,0.4);
+color: var(--green);
+}
+
+/* ── RECEIPT FLOAT (RIGHT) ── */
 .receipt-float {
-position: absolute;
-right: 6%;
-top: 50%;
-transform: translateY(-50%);
-width: 260px;
+flex: 0 0 auto;
+width: 220px;
+margin-left: 270px;
 background: var(--cream);
 color: var(--black);
 border-radius: 4px;
-padding: 28px 24px;
-font-size: 0.72rem;
+padding: 24px 20px;
+font-size: 0.7rem;
 line-height: 1.8;
 box-shadow: 0 40px 120px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+position: relative;
+transform: rotate(6deg);
+z-index: 2;
 opacity: 0;
 animation: floatIn 0.9s ease forwards 0.7s;
 }
@@ -202,16 +346,21 @@ position: absolute;
 bottom: -18px; left: 0; right: 0;
 height: 18px;
 background: repeating-linear-gradient(
--45deg,
-var(--cream) 0px, var(--cream) 6px,
-transparent 6px, transparent 12px
+  -45deg,
+  var(--cream) 0px, var(--cream) 6px,
+  transparent 6px, transparent 12px
 );
+}
+
+.receipt-float:hover {
+transform: rotate(3deg) translateY(-4px);
+transition: transform 0.4s ease;
 }
 
 .receipt-store {
 font-family: 'Syne', sans-serif;
 font-weight: 700;
-font-size: 1rem;
+font-size: 0.95rem;
 margin-bottom: 12px;
 text-align: center;
 }
@@ -229,22 +378,21 @@ justify-content: space-between;
 
 .receipt-total {
 font-weight: 500;
-font-size: 0.82rem;
+font-size: 0.78rem;
 }
 
 .receipt-badge {
-margin-top: 14px;
+margin-top: 12px;
 background: var(--green);
 color: var(--black);
 text-align: center;
 padding: 6px;
 border-radius: 2px;
 font-weight: 500;
-font-size: 0.7rem;
+font-size: 0.65rem;
 letter-spacing: 0.05em;
 }
 
-/* scan line animation on receipt */
 .scan-line {
 position: absolute;
 left: 0; right: 0;
@@ -255,9 +403,9 @@ box-shadow: 0 0 12px rgba(184,240,110,0.5);
 }
 
 @keyframes scan {
-0% { top: 10%; opacity: 0; }
-10% { opacity: 1; }
-90% { opacity: 1; }
+0%   { top: 10%; opacity: 0; }
+10%  { opacity: 1; }
+90%  { opacity: 1; }
 100% { top: 90%; opacity: 0; }
 }
 
@@ -403,127 +551,122 @@ background: var(--card-bg);
 border: 1px solid rgba(255,255,255,0.05);
 padding: 44px 36px;
 position: relative;
-transition: border-color 0.3s;
-}
-
-.plan:hover { border-color: rgba(184,240,110,0.2); }
-
-.plan-featured {
-    background: var(--green);
-    border-color: var(--green);
-    color: #000;
-}
-
-.plan-badge {
-    position: absolute;
-    top: -12px;
-    left: 36px;
-    background: var(--black);
-    color: var(--green) !important;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border: 1px solid var(--green);
-    border-radius: 2px;
-}
-
-.plan-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-}
-
-.plan-price {
-    font-family: 'Syne', sans-serif;
-    font-size: 3.5rem;
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: -0.04em;
-    margin-bottom: 4px;
-}
-
-.plan-price sup {
-    font-size: 1.2rem;
-    vertical-align: super;
-    letter-spacing: 0;
-}
-
-.plan-freq {
-    font-size: 0.72rem;
-    margin-bottom: 32px;
-}
-
-.plan-features {
-    list-style: none;
-    margin-bottom: 36px;
-}
-
-.plan-features li {
-    font-size: 0.78rem;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.plan-featured .plan-features li {
-    border-bottom-color: rgba(0,0,0,0.1);
-}
-
-.plan-features li::before {
-    content: '✓';
-    color: var(--green);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-
-.plan-featured .plan-features li::before {
-    color: #000;
-}
-
-.btn-plan {
-    width: 100%;
-    padding: 14px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    border-radius: 2px;
-    border: 1px solid rgba(255,255,255,0.15);
-    background: transparent;
-    color: #fff;
-    transition: all 0.2s;
-    text-transform: uppercase;
-}
-
-.btn-plan:hover {
-    border-color: var(--green);
-    color: var(--green);
-}
-
-.plan-featured .btn-plan {
-    background: #000;
-    color: #fff;
-    border-color: #000;
-}
-
-.plan-featured .btn-plan:hover {
-    background: rgba(0,0,0,0.8);
-    color: #fff;
-}
-
-.plan {
-    transition: transform 0.35s ease, border-color 0.35s ease;
+transition: transform 0.35s ease, border-color 0.35s ease;
 }
 
 .plan:hover {
-    transform: translateY(-8px);
+transform: translateY(-8px);
+border-color: rgba(184,240,110,0.2);
+}
+
+.plan-featured {
+background: var(--green);
+border-color: var(--green);
+color: #000;
+}
+
+.plan-badge {
+position: absolute;
+top: -12px;
+left: 36px;
+background: var(--black);
+color: var(--green) !important;
+font-size: 0.65rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+padding: 4px 12px;
+border: 1px solid var(--green);
+border-radius: 2px;
+}
+
+.plan-name {
+font-family: 'Syne', sans-serif;
+font-size: 0.8rem;
+font-weight: 700;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+margin-bottom: 20px;
+}
+
+.plan-price {
+font-family: 'Syne', sans-serif;
+font-size: 3.5rem;
+font-weight: 800;
+line-height: 1;
+letter-spacing: -0.04em;
+margin-bottom: 4px;
+}
+
+.plan-price sup {
+font-size: 1.2rem;
+vertical-align: super;
+letter-spacing: 0;
+}
+
+.plan-freq {
+font-size: 0.72rem;
+margin-bottom: 32px;
+}
+
+.plan-features {
+list-style: none;
+margin-bottom: 36px;
+}
+
+.plan-features li {
+font-size: 0.78rem;
+padding: 8px 0;
+border-bottom: 1px solid rgba(255,255,255,0.05);
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.plan-featured .plan-features li {
+border-bottom-color: rgba(0,0,0,0.1);
+}
+
+.plan-features li::before {
+content: '✓';
+color: var(--green);
+font-size: 0.7rem;
+flex-shrink: 0;
+}
+
+.plan-featured .plan-features li::before {
+color: #000;
+}
+
+.btn-plan {
+width: 100%;
+padding: 14px;
+font-family: 'DM Mono', monospace;
+font-size: 0.78rem;
+font-weight: 500;
+letter-spacing: 0.05em;
+cursor: pointer;
+border-radius: 2px;
+border: 1px solid rgba(255,255,255,0.15);
+background: transparent;
+color: #fff;
+transition: all 0.2s;
+text-transform: uppercase;
+}
+
+.btn-plan:hover {
+border-color: var(--green);
+color: var(--green);
+}
+
+.plan-featured .btn-plan {
+background: #000;
+color: #fff;
+border-color: #000;
+}
+
+.plan-featured .btn-plan:hover {
+background: rgba(0,0,0,0.8);
+color: #fff;
 }
 
 /* ── TESTIMONIALS ── */
@@ -549,7 +692,7 @@ font-style: italic;
 }
 
 .testimonial-text::before { content: '"'; color: var(--green); }
-.testimonial-text::after { content: '"'; color: var(--green); }
+.testimonial-text::after  { content: '"'; color: var(--green); }
 
 .testimonial-author {
 display: flex;
@@ -620,7 +763,6 @@ margin-right: auto;
 line-height: 1.7;
 }
 
-/* waitlist form */
 .waitlist-form {
 display: flex;
 gap: 0;
@@ -667,7 +809,6 @@ color: var(--gray);
 letter-spacing: 0.04em;
 }
 
-/* success state */
 .success-msg {
 display: none;
 background: rgba(184,240,110,0.1);
@@ -678,54 +819,6 @@ border-radius: 2px;
 font-size: 0.82rem;
 max-width: 440px;
 margin: 0 auto;
-}
-
-/* ── FOOTER ── */
-footer {
-border-top: 1px solid rgba(255,255,255,0.06);
-padding: 40px 48px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-flex-wrap: wrap;
-gap: 16px;
-}
-
-footer .logo { font-size: 1rem; }
-
-.footer-note {
-font-size: 0.68rem;
-color: var(--gray);
-letter-spacing: 0.04em;
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-from { opacity: 0; transform: translateY(24px); }
-to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes floatIn {
-from { opacity: 0; transform: translateY(-40%) rotate(3deg); }
-to { opacity: 1; transform: translateY(-50%) rotate(3deg); }
-}
-
-.receipt-float { transform: translateY(-50%) rotate(3deg); }
-.receipt-float:hover {
-transform: translateY(-52%) rotate(1deg);
-transition: transform 0.4s ease;
-}
-
-/* scroll reveal */
-.reveal {
-opacity: 0;
-transform: translateY(32px);
-transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.reveal.visible {
-opacity: 1;
-transform: translateY(0);
 }
 
 /* ── STATS BAR ── */
@@ -753,22 +846,85 @@ line-height: 1.6;
 color: var(--light-gray);
 max-width: 220px;
 margin: 0 auto;
-letter-spacing: 0;
-text-transform: none;
 }
 
-/* responsive */
+/* ── FOOTER ── */
+footer {
+border-top: 1px solid rgba(255,255,255,0.06);
+padding: 40px 48px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 16px;
+}
+
+footer .logo { font-size: 1rem; }
+
+.footer-note {
+font-size: 0.68rem;
+color: var(--gray);
+letter-spacing: 0.04em;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(24px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatIn {
+from { opacity: 0; transform: rotate(6deg) translateY(20px); }
+to   { opacity: 1; transform: rotate(6deg) translateY(0); }
+}
+
+/* scroll reveal */
+.reveal {
+opacity: 0;
+transform: translateY(32px);
+transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 120px;
+    gap: 40px;
+    min-height: auto;
+    padding-bottom: 60px;
+  }
+  .hero-content { width: 100%; }
+  .hero-calc { width: 100%; max-width: 420px; margin: 0; }
+  .receipt-float {
+    position: static;
+    transform: rotate(2deg);
+    margin: 0 auto;
+    width: 240px;
+  }
+  .receipt-float:hover { transform: rotate(0deg) translateY(-4px); }
+}
+
 @media (max-width: 768px) {
-nav { padding: 16px 24px; }
-.hero { padding: 100px 24px 60px; }
-.receipt-float { display: none; }
-.section { padding: 72px 24px; }
-.stats-bar { padding: 32px 24px; }
-.cta-section { padding: 72px 24px; }
-footer { padding: 32px 24px; }
-.waitlist-form { flex-direction: column; }
-.waitlist-form input { border-right: 1px solid rgba(255,255,255,0.12); border-bottom: none; border-radius: 2px 2px 0 0; }
-.waitlist-form button { border-radius: 0 0 2px 2px; }
+  nav { padding: 16px 24px; }
+  .hero { padding: 100px 24px 60px; }
+  .section { padding: 72px 24px; }
+  .stats-bar { padding: 32px 24px; }
+  .cta-section { padding: 72px 24px; }
+  footer { padding: 32px 24px; }
+  .waitlist-form { flex-direction: column; }
+  .waitlist-form input {
+    border-right: 1px solid rgba(255,255,255,0.12);
+    border-bottom: none;
+    border-radius: 2px 2px 0 0;
+  }
+  .waitlist-form button { border-radius: 0 0 2px 2px; }
 }
 </style>
 </head>
@@ -776,291 +932,320 @@ footer { padding: 32px 24px; }
 
 <!-- NAV -->
 <nav>
-<div class="logo">Receipt<span>Rabbit</span></div>
-<div style="display:flex;gap:32px;align-items:center;">
-<a href="#how">How it works</a>
-<a href="#pricing">Pricing</a>
-<a href="#waitlist" class="nav-cta">Get early access</a>
-</div>
+  <div class="logo">Receipt<span>Rabbit</span></div>
+  <div style="display:flex;gap:32px;align-items:center;">
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#waitlist" class="nav-cta">Get early access</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-<div class="hero-tag">No bank login. No spreadsheets. No stress.</div>
-<h1>Snap a receipt.<br><span class="outline">Know</span> your<br><span class="accent">money.</span></h1>
-<p class="hero-sub">
-Point your camera at any receipt. ReceiptRabbit scans it, organizes your write-offs, & keeps every expense ready for tax season. Forever forget about spreadsheets, folders, & bank logins.
-</p>
-<div class="hero-actions">
-<button class="btn-primary" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
-Try free — no card needed
-</button>
-<span class="hero-note">First 6 receipts free forever</span>
-</div>
 
-<!-- floating receipt -->
-<div class="receipt-float">
-<div class="scan-line"></div>
-<div class="receipt-store">Whole Foods Market</div>
-<hr class="receipt-divider"/>
-<div class="receipt-row"><span>Organic Milk</span><span>$5.49</span></div>
-<div class="receipt-row"><span>Sourdough Bread</span><span>$4.99</span></div>
-<div class="receipt-row"><span>Chicken Breast</span><span>$11.20</span></div>
-<div class="receipt-row"><span>Sparkling Water</span><span>$3.79</span></div>
-<hr class="receipt-divider"/>
-<div class="receipt-row receipt-total"><span>TOTAL</span><span>$25.47</span></div>
-<div class="receipt-badge">✓ Logged as Groceries</div>
-</div>
+  <!-- LEFT: headline + CTA -->
+  <div class="hero-content">
+    <div class="hero-tag">No bank login. No spreadsheets. No stress.</div>
+    <h1>Snap a receipt.<br><span class="outline">Know</span> your<br><span class="accent">money.</span></h1>
+    <p class="hero-sub">
+      Point your camera at any receipt. ReceiptRabbit scans it, organizes your write-offs, &amp; keeps every expense ready for tax season. Forever forget about spreadsheets, folders, &amp; bank logins.
+    </p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
+        Try free — no card needed
+      </button>
+      <span class="hero-note">First 6 receipts free forever</span>
+    </div>
+  </div>
+
+  <!-- CENTER: tax savings calculator -->
+  <div class="hero-calc">
+    <div class="calc-header">💸 How much are you losing?</div>
+
+    <label class="calc-label">Monthly Untracked Expenses</label>
+    <div class="calc-val-main">$<span id="expenseValue">500</span></div>
+    <input type="range" id="expenseSlider" min="50" max="5000" step="50" value="500" />
+
+    <label class="calc-label">Tax Bracket</label>
+    <select id="taxBracket">
+      <option value="0.10">10% — Low Income</option>
+      <option value="0.12">12% — Lower Middle</option>
+      <option value="0.22" selected>22% — Middle Income</option>
+      <option value="0.24">24% — Upper Middle</option>
+      <option value="0.32">32% — High Income</option>
+      <option value="0.35">35% — Very High Income</option>
+      <option value="0.37">37% — Top Bracket</option>
+    </select>
+
+    <div class="calc-output-box">
+      <div class="calc-output-label">Potential Annual Tax Loss</div>
+      <div class="calc-total">$<span id="savingsTotal">1,320</span></div>
+      <div class="calc-sublabel">left on the table every year</div>
+      <button class="btn-ghost" onclick="shareResults()">↗ Share results</button>
+    </div>
+  </div>
+
+  <!-- RIGHT: receipt mockup -->
+  <div class="receipt-float">
+    <div class="scan-line"></div>
+    <div class="receipt-store">Whole Foods Market</div>
+    <hr class="receipt-divider"/>
+    <div class="receipt-row"><span>Organic Milk</span><span>$5.49</span></div>
+    <div class="receipt-row"><span>Sourdough Bread</span><span>$4.99</span></div>
+    <div class="receipt-row"><span>Chicken Breast</span><span>$11.20</span></div>
+    <div class="receipt-row"><span>Sparkling Water</span><span>$3.79</span></div>
+    <hr class="receipt-divider"/>
+    <div class="receipt-row receipt-total"><span>TOTAL</span><span>$25.47</span></div>
+    <div class="receipt-badge">✓ Logged as Groceries</div>
+  </div>
+
 </section>
 
 <!-- STATS -->
 <div class="stats-bar reveal">
-
-<div class="stat">
-<div class="stat-num">🧾</div>
-<div class="stat-label">Never lose another write-off</div>
+  <div class="stat">
+    <div class="stat-num">🧾</div>
+    <div class="stat-label">Never lose another write-off</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">📂</div>
+    <div class="stat-label">Expenses categorized automatically</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">📊</div>
+    <div class="stat-label">Accountant-ready exports</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">⏳</div>
+    <div class="stat-label">Make tax season effortless</div>
+  </div>
 </div>
 
-<div class="stat">
-<div class="stat-num">📂</div>
-<div class="stat-label">Expenses categorized automatically</div>
-</div>
-
-<div class="stat">
-<div class="stat-num">📊</div>
-<div class="stat-label">Accountant-ready exports</div>
-</div>
-
-<div class="stat">
-<div class="stat-num">⏳</div>
-<div class="stat-label">Make tax season effortless</div>
-</div>
-
-</div>
 <!-- HOW IT WORKS -->
 <section class="section" id="how">
-<div class="section-label">How it works</div>
-<div class="section-title reveal">Three steps.<br>Zero effort.</div>
-<div class="steps reveal">
-<div class="step">
-<div class="step-num">01</div>
-<div class="step-icon">📸</div>
-<h3>Snap</h3>
-<p>Take a photo of any receipt — grocery store, restaurant, Amazon, gas station. Any receipt, anywhere.</p>
-</div>
-<div class="step">
-<div class="step-num">02</div>
-<div class="step-icon">⚡</div>
-<h3>Scan</h3>
-<p>Our system reads the merchant, amount, date, & items in seconds, then automatically assigns a spending category.</p>
-</div>
-<div class="step">
-<div class="step-num">03</div>
-<div class="step-icon">📊</div>
-<h3>See</h3>
-<p>Get a clear monthly breakdown of where your money actually went — no manual entry, no guessing, no surprises.</p>
-</div>
-</div>
+  <div class="section-label">How it works</div>
+  <div class="section-title reveal">Three steps.<br>Zero effort.</div>
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-icon">📸</div>
+      <h3>Snap</h3>
+      <p>Take a photo of any receipt — grocery store, restaurant, Amazon, gas station. Any receipt, anywhere.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-icon">⚡</div>
+      <h3>Scan</h3>
+      <p>Our system reads the merchant, amount, date, &amp; items in seconds, then automatically assigns a spending category.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-icon">📊</div>
+      <h3>See</h3>
+      <p>Get a clear monthly breakdown of where your money actually went — no manual entry, no guessing, no surprises.</p>
+    </div>
+  </div>
 </section>
 
 <!-- FEATURES -->
 <section class="section" style="padding-top:0;" id="features">
-<div class="section-label">Features</div>
-<div class="section-title reveal">Everything you need.<br>Nothing you don't.</div>
-
-<div class="features-grid reveal">
-
-<div class="feature-card">
-<div class="feature-icon">🔒</div>
-<h3>No Bank Login Required</h3>
-<p>We never ask for your bank credentials. Just receipts. Your financial data stays yours — we never sell or share it.</p>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">📬</div>
-<h3>Monthly Spending Report</h3>
-<p>Every month we email you a clean summary of your spending by category. Even if you forget to check the app, the insights find you.</p>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">🗂️</div>
-<h3>Smart Categories</h3>
-<p>Groceries, dining, transport, subscriptions, health — ReceiptRabbit sorts everything automatically & lets you create custom categories too.</p>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">📁</div>
-<h3>Tax-Ready Export</h3>
-<p>Pro users can export all receipts & categories as a clean CSV at tax time. Hand it straight to your accountant.</p>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">⚡</div>
-<h3>Works on Any Device</h3>
-<p>No app download needed. Open the site on your phone, snap the receipt, done. Works instantly in any mobile browser.</p>
-</div>
-
-</div>
+  <div class="section-label">Features</div>
+  <div class="section-title reveal">Everything you need.<br>Nothing you don't.</div>
+  <div class="features-grid reveal">
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <h3>No Bank Login Required</h3>
+      <p>We never ask for your bank credentials. Just receipts. Your financial data stays yours — we never sell or share it.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📬</div>
+      <h3>Monthly Spending Report</h3>
+      <p>Every month we email you a clean summary of your spending by category. Even if you forget to check the app, the insights find you.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🗂️</div>
+      <h3>Smart Categories</h3>
+      <p>Groceries, dining, transport, subscriptions, health — ReceiptRabbit sorts everything automatically &amp; lets you create custom categories too.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📁</div>
+      <h3>Tax-Ready Export</h3>
+      <p>Pro users can export all receipts &amp; categories as a clean CSV at tax time. Hand it straight to your accountant.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Works on Any Device</h3>
+      <p>No app download needed. Open the site on your phone, snap the receipt, done. Works instantly in any mobile browser.</p>
+    </div>
+  </div>
 </section>
 
 <!-- PRICING -->
 <section class="section" id="pricing">
-<div class="section-label">Pricing</div>
-<div class="section-title reveal">Simple. Honest.<br>No surprises.</div>
-<div class="pricing-grid reveal">
-<div class="plan">
-<div class="plan-name">Free</div>
-<div class="plan-price"><sup>$</sup>0</div>
-<div class="plan-freq">forever</div>
-<ul class="plan-features">
-<li>6 receipts per month</li>
-<li>Basic spending categories</li>
-<li>30-day history</li>
-<li>Monthly email summary</li>
-</ul>
-<button class="btn-plan" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Get started free</button>
-</div>
-<div class="plan featured">
-<div class="plan-badge">Most popular</div>
-<div class="plan-name">Personal</div>
-<div class="plan-price"><sup>$</sup>6</div>
-<div class="plan-freq">per month</div>
-<ul class="plan-features">
-<li>Unlimited receipts</li>
-<li>Full spending history</li>
-<li>Trend charts & insights</li>
-<li>Custom categories</li>
-<li>Monthly email report</li>
-</ul>
-<button class="btn-plan" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Start free trial</button>
-</div>
-<div class="plan">
-<div class="plan-name">Pro</div>
-<div class="plan-price"><sup>$</sup>12</div>
-<div class="plan-freq">per month</div>
-<ul class="plan-features">
-<li>Everything in Personal</li>
-<li>Business expense categories</li>
-<li>CSV tax export</li>
-<li>Priority support</li>
-<li>Early access to new features</li>
-</ul>
-<button class="btn-plan" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Start free trial</button>
-</div>
-</div>
+  <div class="section-label">Pricing</div>
+  <div class="section-title reveal">Simple. Honest.<br>No surprises.</div>
+  <div class="pricing-grid reveal">
+    <div class="plan">
+      <div class="plan-name">Free</div>
+      <div class="plan-price"><sup>$</sup>0</div>
+      <div class="plan-freq">forever</div>
+      <ul class="plan-features">
+        <li>6 receipts per month</li>
+        <li>Basic spending categories</li>
+        <li>30-day history</li>
+        <li>Monthly email summary</li>
+      </ul>
+      <button class="btn-plan" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Get started free</button>
+    </div>
+    <div class="plan plan-featured">
+      <div class="plan-badge">Most popular</div>
+      <div class="plan-name">Personal</div>
+      <div class="plan-price"><sup>$</sup>6</div>
+      <div class="plan-freq">per month</div>
+      <ul class="plan-features">
+        <li>Unlimited receipts</li>
+        <li>Full spending history</li>
+        <li>Trend charts &amp; insights</li>
+        <li>Custom categories</li>
+        <li>Monthly email report</li>
+      </ul>
+      <button class="btn-plan" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Start free trial</button>
+    </div>
+    <div class="plan">
+      <div class="plan-name">Pro</div>
+      <div class="plan-price"><sup>$</sup>12</div>
+      <div class="plan-freq">per month</div>
+      <ul class="plan-features">
+        <li>Everything in Personal</li>
+        <li>Business expense categories</li>
+        <li>CSV tax export</li>
+        <li>Priority support</li>
+        <li>Early access to new features</li>
+      </ul>
+      <button class="btn-plan" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Start free trial</button>
+    </div>
+  </div>
 </section>
 
 <!-- TESTIMONIALS -->
 <section class="section" style="padding-top:0;">
-<div class="section-label">Early users</div>
-<div class="section-title reveal">People are already<br>paying attention.</div>
-<div class="testimonials reveal">
-<div class="testimonial">
-<p class="testimonial-text">I used to dread tax season because I had zero receipts organized. I snapped everything into ReceiptRabbit for three months & handed my accountant a CSV. She was shocked.</p>
-<div class="testimonial-author">
-<div class="author-avatar">MR</div>
-<div>
-<div class="author-name">Marcus R.</div>
-<div class="author-role">Freelance graphic designer</div>
-</div>
-</div>
-</div>
-<div class="testimonial">
-<p class="testimonial-text">My husband & I kept arguing about money but neither of us knew where it was actually going. ReceiptRabbit showed us we were spending $600 a month on restaurants. That was the wake-up call.</p>
-<div class="testimonial-author">
-<div class="author-avatar">JL</div>
-<div>
-<div class="author-name">Jamie L.</div>
-<div class="author-role">Nurse & mom of two</div>
-</div>
-</div>
-</div>
-<div class="testimonial">
-<p class="testimonial-text">The fact that I don't have to link my bank account sold me instantly. I've tried every budgeting app & they all want too much access. This just needs a photo.</p>
-<div class="testimonial-author">
-<div class="author-avatar">DK</div>
-<div>
-<div class="author-name">Derek K.</div>
-<div class="author-role">Small business owner</div>
-</div>
-</div>
-</div>
-</div>
+  <div class="section-label">Early users</div>
+  <div class="section-title reveal">People are already<br>paying attention.</div>
+  <div class="testimonials reveal">
+    <div class="testimonial">
+      <p class="testimonial-text">I used to dread tax season because I had zero receipts organized. I snapped everything into ReceiptRabbit for three months &amp; handed my accountant a CSV. She was shocked.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">MR</div>
+        <div>
+          <div class="author-name">Marcus R.</div>
+          <div class="author-role">Freelance graphic designer</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial-text">My husband &amp; I kept arguing about money but neither of us knew where it was actually going. ReceiptRabbit showed us we were spending $600 a month on restaurants. That was the wake-up call.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">JL</div>
+        <div>
+          <div class="author-name">Jamie L.</div>
+          <div class="author-role">Nurse &amp; mom of two</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial-text">The fact that I don't have to link my bank account sold me instantly. I've tried every budgeting app &amp; they all want too much access. This just needs a photo.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">DK</div>
+        <div>
+          <div class="author-name">Derek K.</div>
+          <div class="author-role">Small business owner</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- CTA / WAITLIST -->
 <section class="cta-section" id="waitlist">
-<h2 class="reveal">Stop guessing.<br><span style="color:var(--green)">Start knowing.</span></h2>
-<p class="reveal">Join the waitlist & get early access plus 3 free months of Personal when we launch.</p>
-<div class="waitlist-form reveal">
-<input type="email" id="emailInput" placeholder="your@email.com" />
-<button onclick="handleSignup()">Join waitlist</button>
-</div>
-<div class="success-msg" id="successMsg">
-✓ You're on the list. We'll be in touch soon.
-</div>
-<p class="form-note reveal">No spam. No credit card. Just early access.</p>
+  <h2 class="reveal">Stop guessing.<br><span style="color:var(--green)">Start knowing.</span></h2>
+  <p class="reveal">Join the waitlist &amp; get early access plus 3 free months of Personal when we launch.</p>
+  <div class="waitlist-form reveal">
+    <input type="email" id="emailInput" placeholder="your@email.com" />
+    <button onclick="handleSignup()">Join waitlist</button>
+  </div>
+  <div class="success-msg" id="successMsg">
+    ✓ You're on the list. We'll be in touch soon.
+  </div>
+  <p class="form-note reveal">No spam. No credit card. Just early access.</p>
 </section>
 
 <!-- FOOTER -->
 <footer>
-<div class="logo">Receipt<span>Rabbit</span></div>
-<div class="footer-note">© 2026 ReceiptRabbit. Built for people who hate spreadsheets.</div>
+  <div class="logo">Receipt<span>Rabbit</span></div>
+  <div class="footer-note">© 2026 ReceiptRabbit. Built for people who hate spreadsheets.</div>
 </footer>
 
 <script>
-// scroll reveal
+// ── SCROLL REVEAL ──
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
-entries.forEach((e, i) => {
-if (e.isIntersecting) {
-setTimeout(() => e.target.classList.add('visible'), i * 80);
-observer.unobserve(e.target);
-}
-});
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
 }, { threshold: 0.1 });
 reveals.forEach(el => observer.observe(el));
 
-// waitlist signup
-async function handleSignup() {
+// ── CALCULATOR ──
+const expenseSlider = document.getElementById('expenseSlider');
+const expenseValue  = document.getElementById('expenseValue');
+const taxBracket    = document.getElementById('taxBracket');
+const savingsTotal  = document.getElementById('savingsTotal');
 
-  const email = document.getElementById('emailInput').value.trim();
+function calculate() {
+  const monthly = parseInt(expenseSlider.value);
+  const rate    = parseFloat(taxBracket.value);
+  const annual  = Math.round(monthly * 12 * rate);
+  expenseValue.textContent  = monthly.toLocaleString();
+  savingsTotal.textContent  = annual.toLocaleString();
+}
 
-  if (!email || !email.includes('@')) {
-    return;
-  }
+expenseSlider.addEventListener('input', calculate);
+taxBracket.addEventListener('change', calculate);
+calculate(); // init
 
-  try {
-
-    // Get visitor country
-    const geoRes = await fetch("https://ipwho.is/");
-    const geoData = await geoRes.json();
-
-    const country = geoData.country || "Unknown";
-
-    // Send data to Apps Script
-    fetch("https://script.google.com/macros/s/AKfycbxZyhIzr9YLIzSVjpPF_hZOEQofYVtGwzk1Oq6yJvL70uF1i71dt3C_Ga2lAP28__yr/exec", {
-      method: "POST",
-      body: JSON.stringify({
-        email: email,
-        country: country
-      })
-    });
-
-    // Success UI
-    document.querySelector('.waitlist-form').style.display = 'none';
-    document.getElementById('successMsg').style.display = 'block';
-
-  } catch (err) {
-    console.error(err);
+function shareResults() {
+  const savings = savingsTotal.textContent;
+  const text = `I'm potentially leaving $${savings}/year in tax write-offs on the table. ReceiptRabbit fixes that:`;
+  const url = window.location.href;
+  if (navigator.share) {
+    navigator.share({ title: 'ReceiptRabbit', text, url });
+  } else {
+    window.location.href = `sms:?&body=${encodeURIComponent(text + ' ' + url)}`;
   }
 }
 
+// ── WAITLIST SIGNUP ──
+function handleSignup() {
+  const email = document.getElementById('emailInput').value.trim();
+  if (!email || !email.includes('@')) return;
+
+  fetch("https://script.google.com/macros/s/AKfycbxZyhIzr9YLIzSVjpPF_hZOEQofYVtGwzk1Oq6yJvL70uF1i71dt3C_Ga2lAP28__yr/exec", {
+    method: "POST",
+    body: JSON.stringify({ email }),
+    headers: { "Content-Type": "application/json" }
+  });
+
+  document.querySelector('.waitlist-form').style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+}
 
 document.getElementById('emailInput').addEventListener('keydown', (e) => {
-if (e.key === 'Enter') handleSignup();
-e.target.style.borderColor = '';
+  if (e.key === 'Enter') handleSignup();
 });
 </script>
 </body>
 </html>
+
