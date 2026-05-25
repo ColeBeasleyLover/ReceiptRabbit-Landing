@@ -28,7 +28,7 @@ No backend or product functionality is live yet.
 
 We are currently collecting early access signups.
 
-👉 Join the waitlist: [your link here]
+👉 Join the waitlist now for 3 months free.
 
 ---
 
