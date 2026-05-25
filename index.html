@@ -1022,20 +1022,38 @@ observer.unobserve(e.target);
 reveals.forEach(el => observer.observe(el));
 
 // waitlist signup
-function handleSignup() {
-const email = document.getElementById('emailInput').value.trim();
+async function handleSignup() {
 
-if (!email || !email.includes('@')) return;
+  const email = document.getElementById('emailInput').value.trim();
 
-fetch("https://script.google.com/macros/s/AKfycbxZyhIzr9YLIzSVjpPF_hZOEQofYVtGwzk1Oq6yJvL70uF1i71dt3C_Ga2lAP28__yr/exec", {
-  method: "POST",
-  body: JSON.stringify({ email })
-})
-.then(res => res.text())
-.then(data => console.log(data))
-.catch(err => console.error(err));
-document.querySelector('.waitlist-form').style.display = 'none';
-document.getElementById('successMsg').style.display = 'block';
+  if (!email || !email.includes('@')) {
+    return;
+  }
+
+  try {
+
+    // Get visitor country
+    const geoRes = await fetch("https://ipwho.is/");
+    const geoData = await geoRes.json();
+
+    const country = geoData.country || "Unknown";
+
+    // Send data to Apps Script
+    fetch("https://script.google.com/macros/s/AKfycbxZyhIzr9YLIzSVjpPF_hZOEQofYVtGwzk1Oq6yJvL70uF1i71dt3C_Ga2lAP28__yr/exec", {
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        country: country
+      })
+    });
+
+    // Success UI
+    document.querySelector('.waitlist-form').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 
